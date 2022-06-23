@@ -1,3 +1,5 @@
+from distutils.command.config import config
+import readline
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
@@ -80,40 +82,58 @@ def open1():
     text_file.close()
     T.clipboard_clear()
     T.insert(INSERT, content)
-    
+
+def settings():
+    pass
+
+
     
 # Main
 root = Tk()
 root.geometry("800x600")
 root.title("Notepad")
-saved = False
+try:
+    text_file = open("data.cfg", "r")
+    text_file.close()
+except FileNotFoundError:
+    text_file = open("data.cfg", "w")
+    text_file.write("White")
+    text_file.close()
+text_file = open("data.cfg", "r")
+skin_bg = text_file.read()
+text_file.close()
+if skin_bg == "White":
+    skin_fg = "Black"
+else:
+    skin_fg = "White"
+
 S = tk.Scrollbar(root)
-T = tk.Text(root, height=4, width=50)
+T = tk.Text(root, height=4, width=50 , bg= skin_bg , fg= skin_fg)
 S.pack(side=tk.RIGHT, fill=tk.Y)
 T.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 S.config(command=T.yview)
 T.config(yscrollcommand=S.set)
 
 # TOP BAR MENU
-menu1 = Menu(root)
+menu1 = Menu(root,bg = skin_bg , fg = skin_fg)
 root.config(menu=menu1)
 # NEW
-File_menu = Menu(menu1)
+File_menu = Menu(menu1 ,bg=skin_bg,fg=skin_fg)
 menu1.add_cascade(label="File", menu=File_menu)
 File_menu.add_command(label="New", command=new)
 File_menu.add_command(label="Open", command=open1)
 File_menu.add_command(label="Save", command=save)
 File_menu.add_command(label="Save as", command=save_as)
 # EDIT
-Edit_menu = Menu(menu1)
+Edit_menu = Menu(menu1,bg=skin_bg,fg=skin_fg)
 menu1.add_cascade(label="Edit", menu=Edit_menu)
 Edit_menu.add_command(label="Preferences", command="")
 # SETTINGS
-Settings_menu = Menu(menu1)
+Settings_menu = Menu(menu1,bg=skin_bg,fg=skin_fg)
 menu1.add_cascade(label="Settings", menu=Settings_menu)
 Settings_menu.add_command(label="Preferences", command="")
 # HELP
-help_menu = Menu(menu1)
+help_menu = Menu(menu1,bg=skin_bg,fg=skin_fg)
 menu1.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command="")
 
