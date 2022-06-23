@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import filedialog
 import os
 
+
 # Functions
 def new():
     inpu1 = T.get("1.0", 'end-1c')
@@ -43,7 +44,6 @@ def save2():
 
 def save():
     i = 0
-    i = str(i)
     name = "untitled", i, ".txt"
     name = ''.join(name)
     try:
@@ -54,13 +54,22 @@ def save():
         text_file = open(name, "w")
         inpu = T.get("1.0", 'end-1c')
         text_file.write(inpu)
-        i = int(i)
-        i = i + 1
 
 def save_as():
-    filename = filedialog.askopenfilename(initialdir="/", title="Select a File",
-                                          filetypes=(("Text files", "*.txt*"), ("all files", "*.*")))
+    directory = os.getcwd()
+    filename = filedialog.asksaveasfilename(initialdir= directory, title="Select a File",
+                                          filetypes=(("Text files", "*.txt*"), ("all files", "*.*")),
+                                          initialfile = "Untitled")
     print(os.path.dirname(filename))
+    try:
+        text_file = open(filename, "r")
+        text_file.close()
+    except FileNotFoundError:
+        text_file = open(filename, "w")
+        inpu = T.get("1.0", 'end-1c')
+        text_file.write(inpu)
+
+
 
 
 def open1():
