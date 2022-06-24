@@ -3,7 +3,6 @@ from tkinter import *
 from tkinter import filedialog
 import os
 
-
 # Functions
 def new():
     inpu1 = T.get("1.0", 'end-1c')
@@ -17,30 +16,6 @@ def new():
         button_yes.pack(side="left")
         button_no = Button(new_root, text="no")
         button_no.pack(side="right")
-
-"""
-def save2():
-    def save():
-        try:
-            text_file = open("untitled.txt", "r")
-            text_file.close()
-        except FileNotFoundError:
-            saved = True
-            text_file = open("untitled.txt", "w")
-            inpu = T.get("1.0", 'end-1c')
-            text_file.write(inpu)
-
-    if saved == False:
-        save()
-    else:
-        try:
-            text_file = open("untitled.txt", "r")
-            text_file.close()
-            print("exist")
-        except FileNotFoundError:
-            print("not")
-"""
-
 
 def save():
     i = 0
@@ -68,9 +43,6 @@ def save_as():
         text_file = open(filename, "w")
         inpu = T.get("1.0", 'end-1c')
         text_file.write(inpu)
-
-
-
 
 def open1():
     filename = filedialog.askopenfilename(initialdir="/", title="Select a File",
