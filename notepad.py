@@ -1,5 +1,4 @@
 from distutils.command.config import config
-import readline
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
@@ -19,30 +18,6 @@ def new():
         button_yes.pack(side="left")
         button_no = Button(new_root, text="no")
         button_no.pack(side="right")
-
-"""
-def save2():
-    def save():
-        try:
-            text_file = open("untitled.txt", "r")
-            text_file.close()
-        except FileNotFoundError:
-            saved = True
-            text_file = open("untitled.txt", "w")
-            inpu = T.get("1.0", 'end-1c')
-            text_file.write(inpu)
-
-    if saved == False:
-        save()
-    else:
-        try:
-            text_file = open("untitled.txt", "r")
-            text_file.close()
-            print("exist")
-        except FileNotFoundError:
-            print("not")
-"""
-
 
 def save():
     i = 0
@@ -71,9 +46,6 @@ def save_as():
         inpu = T.get("1.0", 'end-1c')
         text_file.write(inpu)
 
-
-
-
 def open1():
     filename = filedialog.askopenfilename(initialdir="/", title="Select a File",
                                           filetypes=(("Text files", "*.txt*"), ("all files", "*.*")))
@@ -86,8 +58,6 @@ def open1():
 def settings():
     pass
 
-
-    
 # Main
 root = Tk()
 root.geometry("800x600")
