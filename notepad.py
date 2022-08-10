@@ -25,7 +25,6 @@ def save():
         text_file = open(name, "r")
         text_file.close()
     except FileNotFoundError:
-        saved = True
         text_file = open(name, "w")
         inpu = T.get("1.0", 'end-1c')
         text_file.write(inpu)
