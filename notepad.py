@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
 import os
+from turtle import pos
 
 # Functions
 def new():
@@ -51,24 +52,34 @@ def open1():
     text_file.close()
     T.clipboard_clear()
     T.insert(INSERT, content)
+
+
 def settings():
     Main_frame.forget()
     Second_frame.pack(fill='both', expand=1)
-    
+
+def back():
+    Second_frame.forget()
+    Main_frame.pack(fill="both",expand=1)
+
 # Main
+bgcolor = "#101010"
+fgcolor = "#FFFFFF"
 root = Tk()
 root.geometry("800x600")
 root.title("Notepad")
 saved = False
-S = tk.Scrollbar(root)
-T = tk.Text(root, height=4, width=50)
+Main_frame = tk.Frame(root)
+Second_frame =tk.Frame(root)
+S = tk.Scrollbar(Main_frame)
+T = tk.Text(Main_frame, height=4, width=50)
 S.pack(side=tk.RIGHT, fill=tk.Y)
+T.configure(bg=bgcolor , fg=fgcolor)
 T.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 S.config(command=T.yview)
 T.config(yscrollcommand=S.set)
 
-Main_frame = tk.Frame(root)
-Second_frame =tk.Frame(root)
+
 
 
 
@@ -90,17 +101,17 @@ Edit_menu.add_command(label="Preferences", command="")
 # SETTINGS
 Settings_menu = Menu(menu1)
 menu1.add_cascade(label="Settings", menu=Settings_menu)
-Settings_menu.add_command(label="Preferences", command="")
+Settings_menu.add_command(label="Preferences", command=settings)
 # HELP
 help_menu = Menu(menu1)
 menu1.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command="")
 
 
-btn_change_to_work = tk.Button(Second_frame,
-                               text='Change to work',
-                               command="")
-
+btn_test = tk.Button(Second_frame,text='test',command="")
+btn_test.grid(column= 0,row=0)
+btn_test2 = tk.Button(Second_frame,text='close',command=back)
+btn_test2.grid(column= 1,row=0)
 
 Main_frame.pack(fill='both', expand=1)
 
