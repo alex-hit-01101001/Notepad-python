@@ -51,7 +51,9 @@ def open1():
     text_file.close()
     T.clipboard_clear()
     T.insert(INSERT, content)
-    
+def settings():
+    Main_frame.forget()
+    Second_frame.pack(fill='both', expand=1)
     
 # Main
 root = Tk()
@@ -64,6 +66,12 @@ S.pack(side=tk.RIGHT, fill=tk.Y)
 T.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 S.config(command=T.yview)
 T.config(yscrollcommand=S.set)
+
+Main_frame = tk.Frame(root)
+Second_frame =tk.Frame(root)
+
+
+
 
 # TOP BAR MENU
 menu1 = Menu(root)
@@ -87,5 +95,13 @@ Settings_menu.add_command(label="Preferences", command="")
 help_menu = Menu(menu1)
 menu1.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command="")
+
+
+btn_change_to_work = tk.Button(Second_frame,
+                               text='Change to work',
+                               command="")
+
+
+Main_frame.pack(fill='both', expand=1)
 
 tk.mainloop()
