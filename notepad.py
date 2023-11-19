@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
 import os
-import cv2
 
 # Functions
 def new():
